@@ -245,9 +245,8 @@ Send the Request:
 Click Send.
 
 Expected Response: A JSON object with your query and a concise final answer (e.g., "150.00") returned by the RAG pipeline.
-```
+
 C. Testing GET /health Endpoint
-```
 
 Create a New Request:
 
@@ -259,7 +258,8 @@ Configure the Request:
 ```
 Method: Select GET.
 ```
-```URL: Enter http://127.0.0.1:8000/health.
+```
+URL: Enter http://127.0.0.1:8000/health.
 ```
 Headers:
 ```
