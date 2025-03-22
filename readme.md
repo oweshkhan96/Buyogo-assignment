@@ -282,7 +282,8 @@ Expected Response: A JSON object indicating the health status of each component 
     "llm": "up",
     "faiss_index": "up"
   }
-}```
+}
+```
 
 Troubleshooting
 Ollama / LLM Issues:
