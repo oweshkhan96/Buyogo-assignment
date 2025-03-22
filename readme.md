@@ -40,7 +40,8 @@ Health check endpoint.
 ```
 
 Prerequisites
-```Python 3.8+
+```
+Python 3.8+
 
 Virtual Environment (recommended)
 
@@ -83,9 +84,11 @@ venv\Scripts\activate
 On macOS/Linux:
 ```
 python -m venv venv
-source venv/bin/activate```
+source venv/bin/activate
+```
 
 3. Install Required Packages
+
 ```
 pip install -r requirements.txt
 ```
