@@ -1,0 +1,10 @@
+nginx
+Copy
+Edit
+Django
+pandas
+numpy
+matplotlib
+seaborn
+faiss-cpu
+requests
