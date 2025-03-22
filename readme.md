@@ -1,48 +1,54 @@
 Hotel Booking Analytics & Q&A API
-This project processes hotel booking data, extracts insights, and enables retrieval-augmented question answering (RAG) using a local instance of the Ollama-powered llama3.1 model. The system provides analytics (e.g., revenue trends, cancellation rate, geographical distribution, booking lead time distribution) and answers natural language queries about hotel booking data.
 
-Features
-Data Preprocessing:
-Cleans and structures hotel booking data (CSV or database).
 
-Analytics & Reporting:
+This project processes hotel booking data, extracts insights, and enables retrieval-augmented question answering (RAG) using a local instance of the Ollama-powered llama3.1 model. The system provides analytics (e.g., revenue trends, cancellation rates, geographical distribution, booking lead time distribution) and answers natural language queries about hotel booking data through a REST API built with Django.
 
-Revenue trends over time
+Features:-
 
-Cancellation rate as percentage of total bookings
+Data Preprocessing & Analytics:
+```
+Load, clean, and process hotel booking data from a CSV file.
 
-Geographical distribution of bookings
+Generate insights such as revenue trends, cancellation rates, geographical distribution, and booking lead time statistics.
+```
 
-Booking lead time distribution
+Retrieval-Augmented Q&A (RAG):
+```
+Uses FAISS for vector indexing (with dummy embeddings by default).
 
-Retrieval-Augmented Question Answering (RAG):
-Uses FAISS for vector indexing and a local LLM (llama3.1 via Ollama) for answering queries.
+Integrates with a local LLM (llama3.1 via Ollama) to answer booking-related questions with concise answers.
+```
 
 API Endpoints:
-
+```
 POST /analytics: Returns analytics reports.
+```
+```
+POST /ask: Answers natural language queries about the data.
+```
+```
+GET /health: Checks the overall health of the system (database, LLM, FAISS index).
+```
 
-POST /ask: Answers booking-related queries.
+Bonus Features:
+```
+Real-time data updates using a database (e.g., SQLite, PostgreSQL).
 
-GET /health: Returns the health status of the system.
+Query history tracking.
 
-Bonus Features (Optional):
-
-Real-time data updates via a database (e.g., SQLite, PostgreSQL)
-
-Query history tracking
-
-Health check endpoint
+Health check endpoint.
+```
 
 Prerequisites
-Python 3.8+
+```Python 3.8+
 
-Virtual environment (recommended)
+Virtual Environment (recommended)
 
 Ollama installed and running with the llama3.1 model on port 11434
+```
 
 Required Python packages:
-
+```
 Django
 
 pandas
@@ -56,30 +62,28 @@ seaborn
 faiss-cpu
 
 requests
+```
 
-Setup Instructions
+Repository Setup Instructions
 
 1. Clone the Repository
-
-```git clone <repo-url>
-cd <repo-directory>
+```
+git clone https://github.com/oweshkhan96/Buyogo-assignment
+cd Buyogo-assignment
 ```
 
 2. Create and Activate a Virtual Environment
 
-```
-python -m venv venv
-```
-
 On Windows:
 ```
+python -m venv venv
 venv\Scripts\activate
 ```
 
 On macOS/Linux:
 ```
-source venv/bin/activate
-```
+python -m venv venv
+source venv/bin/activate```
 
 3. Install Required Packages
 ```
@@ -88,7 +92,7 @@ pip install -r requirements.txt
 
 4. Setup the Django Project
 
-Change into the Django project directory (e.g., hotelapi) and run the migrations:
+Navigate to your Django project directory (e.g., hotelapi) and run the migrations:
 ```
 python manage.py makemigrations
 python manage.py migrate
@@ -96,61 +100,170 @@ python manage.py migrate
 
 5. Load Sample Data
 
-Place your hotel_bookings.csv file in the root directory (or update the file path in data_preprocessing.py).
+Place your hotel_bookings.csv file in the root directory (or update the file path in data_preprocessing.py accordingly).
 
-6. Run the Django Development Server
+
+Ollama & llama3.1 Setup
+```
+Install Ollama:
+Follow the installation instructions on Ollama's website (for your operating system).
+```
+
+Pull the llama3.1 Model:
+
+Open your terminal and run:
+```
+ollama pull llama3.1
+```
+
+This will download the llama3.1 model. Verify it's installed by running:
+
+```
+ollama list
+```
+
+Run Ollama:
+
+Start Ollama to serve the API (default port is 11434):
+```
+ollama serve
+```
+Confirm it's running by visiting http://localhost:11434 in your browser.
+
+API Endpoint Verification:
+Verify that the API endpoint is accessible by using Postman (see below) or by issuing a test command. The project is configured to call the endpoint at http://localhost:11434/api/generate.
+
+Running the Django Server
+Once all setup steps are complete, start your Django development server:
 
 ```
 python manage.py runserver
 ```
-Your server will run at http://127.0.0.1:8000/.
+Your API will be available at http://127.0.0.1:8000/.
 
 API Endpoints
-POST /analytics
-Description: Returns analytics reports including revenue trends, cancellation rate, geographical distribution, and booking lead time distribution.
 
-Request Example:
+```POST /analytics
+Description: Returns analytics reports (revenue trends, cancellation rate, geographical distribution, and booking lead time distribution).
 ```
-curl -X POST http://127.0.0.1:8000/analytics
+```POST /ask
+Description: Answers booking-related natural language queries (e.g., "What is the average price of a hotel booking?") using the RAG pipeline and the locally integrated LLM.
 ```
-Response Example:
+```GET /health
+Description: Returns the overall health status of the system including the database, LLM, and FAISS index.
 ```
+
+Testing the API Using Postman
+1. Download & Install Postman
+```If you haven't installed Postman yet, download it from Postman’s website and install it on your system.
+```
+2. Launch Postman
+```Open the Postman application.
+```
+3. Setting Up Requests
+```A. Testing POST /analytics Endpoint
+```
+Create a New Request:
+
+Click New > Request.
+
+Name the request (e.g., "Hotel Analytics") and save it in a collection.
+
+Configure the Request:
+```
+Method: Select POST.
+```
+```
+URL: Enter http://127.0.0.1:8000/analytics.
+```
+
+Headers:
+```
+Go to the Headers tab.
+
+Add a header:
+
+Key: Content-Type
+
+Value: application/json
+```
+
+Body:
+
+Leave it empty
+
+Expected Response: A JSON object with analytics data (e.g., revenue trends, cancellation rate, geographical distribution, and booking lead time summary).
+
+```
+B. Testing POST /ask Endpoint
+```
+Create a New Request:
+
+Click New > Request.
+
+Name it (e.g., "Hotel Q&A") and save it in a collection.
+
+Configure the Request:
+```
+Method: Select POST.
+```
+```URL: Enter http://127.0.0.1:8000/ask.
+```
+Headers:
+```
+In the Headers tab, add:
+
+Key: Content-Type
+
+Value: application/json
+```
+Body:
+```
+Click on the Body tab.
+
+Select raw.
+
+Choose JSON from the dropdown.
+
+Enter a JSON payload with your query. For example:
+
 {
-  "revenue_trends": [ /* Array of revenue records */ ],
-  "cancellation_rate": 27.80,
-  "geographical_distribution": [ /* Array of records by country */ ],
-  "lead_time_distribution_summary": { /* Statistical summary */ }
+  "query": "What is the average price of a hotel booking?"
 }```
+Send the Request:
 
-POST /ask
-Description: Answers booking-related queries using the RAG pipeline.
+Click Send.
 
-Request Example (using Postman or curl):
+Expected Response: A JSON object with your query and a concise final answer (e.g., "150.00") returned by the RAG pipeline.
 ```
-curl -X POST http://127.0.0.1:8000/ask -H "Content-Type: application/json" -d '{"query": "What is the average price of a hotel booking?"}'
+C. Testing GET /health Endpoint```
+
+Create a New Request:
+
+Click New > Request.
+
+Name it (e.g., "Health Check") and save it in a collection.
+
+Configure the Request:
 ```
-Response Example:
+Method: Select GET.
 ```
-{
-  "query": "What is the average price of a hotel booking?",
-  "answer": "150.00"
-}```
+```URL: Enter http://127.0.0.1:8000/health.
+```
+Headers:
+```
+Optionally, add a header:
 
+Key: Content-Type
 
-GET /health
-Description: Checks the overall health of the system including database connection, LLM (Ollama) availability, and FAISS index status.
+Value: application/json
+```
+Send the Request:
 
-Request Example:
+Click Send.
 
-bash
-Copy
-Edit
-curl -X GET http://127.0.0.1:8000/health
-Response Example:
-
-json
-Copy
-Edit
+Expected Response: A JSON object indicating the health status of each component (e.g., database, LLM, FAISS index):
+```
 {
   "status": "up",
   "components": {
@@ -158,58 +271,21 @@ Edit
     "llm": "up",
     "faiss_index": "up"
   }
-}
-RAG Pipeline and LLM Integration
-FAISS:
-Used to index and retrieve relevant documents from hotel booking data (using dummy embeddings by default).
-
-LLama3.1 via Ollama:
-The system calls http://localhost:11434/api/generate to generate concise answers.
-
-Prompt Instructions:
-The prompts instruct the model to return only the final answer (e.g., "27.80%" for cancellation rate) without additional explanation.
-
-Bonus Features
-Real-Time Data Updates
-Booking data is stored in a database (via Django models).
-
-The system retrieves the latest data on each request, ensuring real-time updates.
-
-Query History Tracking
-Each query and its answer are stored in the QueryHistory model for auditing and debugging purposes.
-
-Health Check Endpoint
-The /health endpoint performs internal checks on the database, LLM, and FAISS index.
-
-Testing the API
-Use Postman or curl to test the endpoints. Example queries include:
-
-Cancellation Rate:
-{"query": "What is the cancellation rate for Resort Hotel?"}
-
-Average Price:
-{"query": "What is the average price of a hotel booking?"}
-
-Revenue Trends:
-{"query": "Show me total revenue for July 2017"}
-
-Health Check:
-GET http://127.0.0.1:8000/health
+}```
 
 Troubleshooting
-LLM Issues:
-Ensure Ollama is running on http://localhost:11434 and the llama3.1 model is correctly loaded.
+Ollama / LLM Issues:
+
+Ensure Ollama is running on http://localhost:11434 and the llama3.1 model is loaded.
+
+Use Postman to test the LLM endpoint directly if needed.
 
 Data Issues:
-Verify that hotel_bookings.csv contains all necessary fields (e.g., adr for average price).
+
+Verify that your hotel_bookings.csv file contains all required fields (e.g., adr for average price).
 
 API Errors:
-Check the Django server logs for error details.
 
-License
-[Include license details here.]
+Check the Django server logs for error messages.
 
-Acknowledgements
-Thanks to Ollama for the llama3.1 integration.
-
-Thanks to Django, Pandas, FAISS, and other libraries.
+Ensure you are using the correct URL and request method in Postman.

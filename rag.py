@@ -5,9 +5,6 @@ from rag_index import create_dummy_embeddings, build_faiss_index, create_textual
 from data_preprocessing import load_and_clean_data
 
 def llama3_1_generate(prompt):
-    """
-    Calls the Ollama API to generate text using the llama3.1 model.
-    """
     url = "http://localhost:11434/api/generate"  
     payload = {
         "model": "llama3.1",
