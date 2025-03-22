@@ -45,9 +45,9 @@
   "answer": "PRT"
 }
 ```
-### Short Report: Implementation Choices & Challenges
+## Short Report: Implementation Choices & Challenges
 
-## Implementation Choices:
+### Implementation Choices:
 
     Framework & Tools: Used Django for building REST APIs, Pandas and NumPy for data processing, FAISS for vector retrieval, and Ollama with llama3.1 as the local LLM.
 
@@ -57,7 +57,7 @@
 
     Fallback Mechanisms: Implemented logic to return computed values directly when the LLM’s response is ambiguous or incomplete.
 
-## Challenges:
+### Challenges:
 
     Data Quality: Handling missing values and inconsistencies in the CSV data required robust preprocessing.
 
