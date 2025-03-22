@@ -146,13 +146,16 @@ Your API will be available at http://127.0.0.1:8000/.
 
 API Endpoints
 
-```POST /analytics
+```
+POST /analytics
 Description: Returns analytics reports (revenue trends, cancellation rate, geographical distribution, and booking lead time distribution).
 ```
-```POST /ask
+```
+POST /ask
 Description: Answers booking-related natural language queries (e.g., "What is the average price of a hotel booking?") using the RAG pipeline and the locally integrated LLM.
 ```
-```GET /health
+```
+GET /health
 Description: Returns the overall health status of the system including the database, LLM, and FAISS index.
 ```
 
