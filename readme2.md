@@ -3,12 +3,11 @@
 ### Query 1: Cancellation Rate for Resort Hotel
 **Request:**
 ```
-json
 {
   "query": "What is the cancellation rate for Resort Hotel?"
 }
 ```
-## Expected response:
+**Expected response:**
 ```
 {
   "query": "What is the cancellation rate for Resort Hotel?",
@@ -22,7 +21,7 @@ json
   "query": "What is the average price of a hotel booking?"
 }
 ```
-## Expected Response:
+**Expected Response:**
 ```
 {
   "query": "What is the average price of a hotel booking?",
@@ -32,13 +31,13 @@ json
 ```
 
 ### Query 3: Locations with Highest Booking Cancellations
-## Request:
+**Request:**
 ```
 {
   "query": "Which locations had the highest booking cancellations?"
 }
 ```
-## Expected Response:
+**Expected Response:**
 
 ```
 {
