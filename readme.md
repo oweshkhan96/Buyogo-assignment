@@ -161,13 +161,16 @@ Description: Returns the overall health status of the system including the datab
 
 Testing the API Using Postman
 1. Download & Install Postman
-```If you haven't installed Postman yet, download it from Postman’s website and install it on your system.
+```
+If you haven't installed Postman yet, download it from Postman’s website and install it on your system.
 ```
 2. Launch Postman
-```Open the Postman application.
+```
+Open the Postman application.
 ```
 3. Setting Up Requests
-```A. Testing POST /analytics Endpoint
+```
+A. Testing POST /analytics Endpoint
 ```
 Create a New Request:
 
