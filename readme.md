@@ -169,9 +169,9 @@ If you haven't installed Postman yet, download it from Postman’s website and i
 Open the Postman application.
 ```
 3. Setting Up Requests
-```
+
 A. Testing POST /analytics Endpoint
-```
+
 Create a New Request:
 
 Click New > Request.
@@ -203,9 +203,8 @@ Leave it empty
 
 Expected Response: A JSON object with analytics data (e.g., revenue trends, cancellation rate, geographical distribution, and booking lead time summary).
 
-```
 B. Testing POST /ask Endpoint
-```
+
 Create a New Request:
 
 Click New > Request.
@@ -216,7 +215,8 @@ Configure the Request:
 ```
 Method: Select POST.
 ```
-```URL: Enter http://127.0.0.1:8000/ask.
+```
+URL: Enter http://127.0.0.1:8000/ask.
 ```
 Headers:
 ```
@@ -238,14 +238,16 @@ Enter a JSON payload with your query. For example:
 
 {
   "query": "What is the average price of a hotel booking?"
-}```
+}
+```
 Send the Request:
 
 Click Send.
 
 Expected Response: A JSON object with your query and a concise final answer (e.g., "150.00") returned by the RAG pipeline.
 ```
-C. Testing GET /health Endpoint```
+C. Testing GET /health Endpoint
+```
 
 Create a New Request:
 
